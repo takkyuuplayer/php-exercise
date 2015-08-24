@@ -6,7 +6,9 @@
             "email": "takkyuuplayer@gmail.com"
         }
     ],
-    "require": {},
+    "require": {
+        "aura/cli": "^2.1"
+    },
     "require-dev": {
         "phpunit/phpunit": "^4.8"
     }
