@@ -1,0 +1,13 @@
+{
+    "name": "vagrant/php-ex",
+    "require": {
+        "nategood/httpful": "^0.2.20",
+        "phpunit/phpunit": "^5.1"
+    },
+    "authors": [
+        {
+            "name": "takkyuuplayer",
+            "email": "takkyuuplayer@gmail.com"
+        }
+    ]
+}
