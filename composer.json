@@ -2,7 +2,8 @@
     "name": "vagrant/php-ex",
     "require": {
         "nategood/httpful": "^0.2.20",
-        "phpunit/phpunit": "^5.1"
+        "phpunit/phpunit": "^5.1",
+        "pear/net_url2": "^2.2"
     },
     "authors": [
         {
