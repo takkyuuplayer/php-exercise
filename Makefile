@@ -13,6 +13,7 @@ composer-update:
 
 composer-setup:
 	$(COMPOSER) install
+	$(COMPOSER) update
 
 test:
 	./vendor/bin/phpunit
