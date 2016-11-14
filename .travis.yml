@@ -9,5 +9,5 @@ install:
   - make
 before_script:
   - mysql -uroot -e "CREATE DATABASE IF NOT EXISTS test DEFAULT CHARSET=utf8"
-  - mysql -uroot -e "GRANT ALL PRIVILEGES ON test.* TO 'testuser'@'127.0.0.1' IDENTIFIED BY 'testpassword'"
+  - mysql -uroot -e "GRANT ALL PRIVILEGES ON test.* TO 'testuser'@'localhost' IDENTIFIED BY 'testpass'"
 script: make test
