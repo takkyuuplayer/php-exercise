@@ -13,8 +13,8 @@ setup:
 	$(COMPOSER) install
 	$(COMPOSER) update
 
-upgrade:
-	./composer.phar outdated | awk '{print $$1}' | xargs $(COMPOSER) require
+reinstall:
+	cat composer.json | jq .require | jq keys -c | sed 's/[][,]/ /g' | xargs $(COMPOSER) require
 
 composer-update:
 	$(COMPOSER) self-update

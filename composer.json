@@ -1,7 +1,7 @@
 {
     "name": "takkyuuplayer/php-exercise",
     "require": {
-        "phpunit/phpunit": "^5.6",
+        "phpunit/phpunit": "^6.0",
         "nategood/httpful": "^0.2.20",
         "pear/net_url2": "^2.2"
     },

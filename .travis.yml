@@ -6,8 +6,11 @@ php:
   - '5.6'
   - '7.0'
   - '7.1'
+before_install:
+  - sudo apt-get install -y jq
 install:
-  - make
+  - make composer-update
+  - make reinstall
 before_script:
   - mysql -uroot -e "CREATE DATABASE IF NOT EXISTS test DEFAULT CHARSET=utf8"
   - mysql -uroot -e "GRANT ALL PRIVILEGES ON test.* TO 'testuser'@'localhost' IDENTIFIED BY 'testpass'"
