@@ -13,6 +13,7 @@ setup:
 	$(COMPOSER) install
 	$(COMPOSER) update
 
+upgrade: reinstall
 reinstall:
 	cat composer.json | jq .require | jq keys -c | sed 's/[][,]/ /g' | xargs $(COMPOSER) require
 
