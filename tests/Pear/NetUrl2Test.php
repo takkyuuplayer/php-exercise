@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-class NetUrl2Test extends \PHPUnit_Framework_TestCase
+class NetUrl2Test extends \PHPUnit\Framework\TestCase
 {
     public function testNetUrl2Test()
     {
