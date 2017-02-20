@@ -7,14 +7,17 @@ else
 COMPOSER=composer
 endif
 
-all: composer-update composer-setup
+all: composer-update setup
+
+setup:
+	$(COMPOSER) install
+	$(COMPOSER) update
+
+upgrade:
+	./composer.phar outdated | awk '{print $$1}' | xargs $(COMPOSER) require
 
 composer-update:
 	$(COMPOSER) self-update
-
-composer-setup:
-	$(COMPOSER) install
-	$(COMPOSER) update
 
 test:
 	./vendor/bin/phpunit
