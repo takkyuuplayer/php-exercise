@@ -98,8 +98,8 @@ class DummyConnection implements \Illuminate\Database\ConnectionInterface
 
 
 use Illuminate\Database\Query\Builder;
-use Illuminate\Database\Query\Grammars\PostgresGrammar;
-use Illuminate\Database\Query\Processors\PostgresProcessor;
+use Illuminate\Database\Query\Grammars\PostgresGrammar as Grammar;
+use Illuminate\Database\Query\Processors\PostgresProcessor as Processor;
 
 class BuilderTest extends \PHPUnit\Framework\TestCase
 {
@@ -109,8 +109,8 @@ class BuilderTest extends \PHPUnit\Framework\TestCase
     {
       $this->builder = new Builder(
         new DummyConnection(),
-        new PostgresGrammar(),
-        new PostgresProcessor()
+        new Grammar(),
+        new Processor()
       );
     }
 
@@ -122,9 +122,34 @@ class BuilderTest extends \PHPUnit\Framework\TestCase
     public function testWhere()
     {
         $this->builder->from('user')
-            ->where('id', '=', 1);
+            ->where('id', '=', 1)
+            ->where([
+              ['email', '=', '1@test.com'],
+              ['email', '=', '2@test.com', 'or'],
+            ]);
 
-        $this->assertSame('select * from "user" where "id" = ?', $this->builder->toSql());
-        $this->assertSame([1], $this->builder->getBindings());
+        $this->assertSame('select * from "user" where "id" = ? and ("email" = ? or "email" = ?)', $this->builder->toSql());
+        $this->assertSame([1, '1@test.com', '2@test.com'], $this->builder->getBindings());
+    }
+    public function testOrWhere()
+    {
+        $this->builder->from('user')
+            ->where('id', '=', 1)
+            ->orWhere([
+              ['email', '=', '1@test.com'],
+              ['email', '=', '2@test.com'],
+            ]
+          );
+
+        $this->assertSame('select * from "user" where "id" = ? or ("email" = ? and "email" = ?)', $this->builder->toSql());
+    }
+
+    public function testJoin()
+    {
+        $this->builder->from('user')
+            ->leftJoin('user_signup_route', 'user.id', '=', 'user_signup_route.user_id')
+            ->where('user.id', '=', 1);
+
+        $this->assertSame('select * from "user" left join "user_signup_route" on "user"."id" = "user_signup_route"."user_id" where "user"."id" = ?', $this->builder->toSql());
     }
 }
