@@ -137,11 +137,11 @@ class BuilderTest extends \PHPUnit\Framework\TestCase
             ->where('id', '=', 1)
             ->orWhere([
               ['email', '=', '1@test.com'],
-              ['email', '=', '2@test.com'],
+              [function($query) { $query->whereNull('email'); }, null, null, 'or'],
             ]
           );
 
-        $this->assertSame('select * from "user" where "id" = ? or ("email" = ? and "email" = ?)', $this->builder->toSql());
+        $this->assertSame('select * from "user" where "id" = ? or ("email" = ? or ("email" is null))', $this->builder->toSql());
     }
 
     public function testJoin()
