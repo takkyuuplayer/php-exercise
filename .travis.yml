@@ -9,8 +9,7 @@ php:
 before_install:
   - sudo apt-get install -y jq
 install:
-  - make composer-update
-  - make reinstall
+  - make travis
 before_script:
   - mysql -uroot -e "CREATE DATABASE IF NOT EXISTS test DEFAULT CHARSET=utf8"
   - mysql -uroot -e "GRANT ALL PRIVILEGES ON test.* TO 'testuser'@'localhost' IDENTIFIED BY 'testpass'"

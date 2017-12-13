@@ -1,3 +1,4 @@
+.PHONY: test vendor vendor/update
 PHP=$(shell which php)
 TESTRUNNER=vendor/bin/testrunner
 CURL=$(shell which curl)
@@ -7,27 +8,25 @@ else
 COMPOSER=composer
 endif
 
-all: composer-update setup
+all: vendor vendor/update
 
-setup:
+vendor:
 	$(COMPOSER) install
+
+vendor/update:
 	$(COMPOSER) update
 
-upgrade: reinstall
-reinstall:
-	cat composer.json | jq .require | jq keys -c | sed 's/[][,]/ /g' | xargs $(COMPOSER) require
+composer:
+	$(CURL) -s https://getcomposer.org/installer | php
 
-composer-update:
+composer/update:
 	$(COMPOSER) self-update
 
 test:
 	./vendor/bin/phpunit
 
-composer-install:
-	$(CURL) -s https://getcomposer.org/installer | php
-
-test-runner:
-	$(PHP) vendor/bin/testrunner compile -p vendor/autoload.php
+travis: composer/update
+	cat composer.json | jq .require | jq keys -c | sed 's/[][,]/ /g' | xargs $(COMPOSER) require
 
 help:
 	cat Makefile
