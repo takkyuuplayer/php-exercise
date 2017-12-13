@@ -11,5 +11,8 @@
             "name": "takkyuuplayer",
             "email": "takkyuuplayer@gmail.com"
         }
-    ]
+    ],
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.2"
+    }
 }

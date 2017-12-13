@@ -107,26 +107,28 @@ class BuilderTest extends \PHPUnit\Framework\TestCase
 
     public function setUp()
     {
-      $this->builder = new Builder(
-        new DummyConnection(),
-        new Grammar(),
-        new Processor()
-      );
+        $this->builder = new Builder(
+            new DummyConnection(),
+            new Grammar(),
+            new Processor()
+        );
     }
 
     public function testCreateInstance()
     {
-      $this->assertInstanceOf('Illuminate\Database\Query\Builder', $this->builder);
+        $this->assertInstanceOf('Illuminate\Database\Query\Builder', $this->builder);
     }
 
     public function testWhere()
     {
         $this->builder->from('user')
             ->where('id', '=', 1)
-            ->where([
-              ['email', '=', '1@test.com'],
-              ['email', '=', '2@test.com', 'or'],
-            ]);
+            ->where(
+                [
+                ['email', '=', '1@test.com'],
+                ['email', '=', '2@test.com', 'or'],
+                ]
+            );
 
         $this->assertSame('select * from "user" where "id" = ? and ("email" = ? or "email" = ?)', $this->builder->toSql());
         $this->assertSame([1, '1@test.com', '2@test.com'], $this->builder->getBindings());
@@ -135,11 +137,14 @@ class BuilderTest extends \PHPUnit\Framework\TestCase
     {
         $this->builder->from('user')
             ->where('id', '=', 1)
-            ->orWhere([
-              ['email', '=', '1@test.com'],
-              [function($query) { $query->whereNull('email'); }, null, null, 'or'],
-            ]
-          );
+            ->orWhere(
+                [
+                ['email', '=', '1@test.com'],
+                [function ($query) {
+                    $query->whereNull('email'); 
+                }, null, null, 'or'],
+                ]
+            );
 
         $this->assertSame('select * from "user" where "id" = ? or ("email" = ? or ("email" is null))', $this->builder->toSql());
     }

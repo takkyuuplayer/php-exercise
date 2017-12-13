@@ -25,6 +25,9 @@ composer/update:
 test:
 	./vendor/bin/phpunit
 
+lint:
+	./vendor/bin/phpcbf tests
+
 travis: composer/update
 	cat composer.json | jq .require | jq keys -c | sed 's/[][,]/ /g' | xargs $(COMPOSER) require
 

@@ -1,7 +1,7 @@
 <?php
 if ('POST' == $_SERVER['REQUEST_METHOD']) {
-  var_dump($_FILES);
-  exit(0);
+    var_dump($_FILES);
+    exit(0);
 }
 ?>
 <!doctype html>
