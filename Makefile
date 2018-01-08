@@ -1,26 +1,23 @@
-.PHONY: test vendor vendor/update
+.PHONY: vendor
+
 PHP=$(shell which php)
-TESTRUNNER=vendor/bin/testrunner
-CURL=$(shell which curl)
-ifneq ("$(wildcard composer.phar)", "")
 COMPOSER=./composer.phar
-else
-COMPOSER=composer
-endif
 
-all: vendor vendor/update
+all: vendor update
 
-vendor:
+vendor: composer.phar
 	$(COMPOSER) install
 
-vendor/update:
-	$(COMPOSER) update
+update: composer/update vendor/update
 
-composer:
-	$(CURL) -s https://getcomposer.org/installer | php
+composer.phar:
+	php -r "readfile('https://getcomposer.org/installer');" | php
 
 composer/update:
 	$(COMPOSER) self-update
+
+vendor/update: composer.phar
+	$(COMPOSER) update
 
 test:
 	./vendor/bin/phpunit
