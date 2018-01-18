@@ -23,5 +23,4 @@ run:
 	@$(DOCKER) exec -i $(CONTAINER_NAME) php $(SRC)
 
 run-test:
-	@$(DOCKER) exec -i $(CONTAINER_NAME) ls -al
 	@$(DOCKER) exec -i $(CONTAINER_NAME) ./vendor/bin/phpunit $(SRC)
