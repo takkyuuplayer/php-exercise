@@ -1,7 +1,7 @@
 <?php
 use PHPUnit\Framework\TestCase;
 
-class HelloTest extends TestCase
+class StdClassTest extends TestCase
 {
     public function testStdClassInstance()
     {

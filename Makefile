@@ -13,7 +13,7 @@ update: composer/update vendor/update
 composer.phar:
 	php -r "readfile('https://getcomposer.org/installer');" | php
 
-composer/update:
+composer/update: composer.phar
 	$(COMPOSER) self-update
 
 vendor/update: composer.phar
