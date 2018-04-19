@@ -20,5 +20,37 @@ class stdClassTest extends TestCase
 
         $this->assertSame('{"id":5,"foo":"5"}', json_encode($k));
     }
+
+    public function testStdClassInArray()
+    {
+        $arr = [
+            (object)['num' => 1],
+            (object)['num' => 2],
+        ];
+
+        foreach ($arr as $std) {
+            $std->num = 2 * $std->num;
+        }
+
+        $this->assertSame(2, $arr[0]->num, 'foreach with reference');
+        $this->assertSame(4, $arr[1]->num, 'foreach with reference');
+
+        $arr = [
+            ['num' => 1, 'nest' => ['num' => 1],],
+            ['num' => 2, 'nest' => ['num' => 2],],
+        ];
+
+        foreach ($arr as $row) {
+            $row['num'] = 2 * $row['num'];
+            $row['nest']['num'] = 2 * $row['nest']['num'];
+        }
+
+        $this->assertSame(1, $arr[0]['num'], 'foreach with copy');
+        $this->assertSame(2, $arr[1]['num'], 'foreach with copy');
+
+        $this->assertSame(1, $arr[0]['nest']['num'], 'foreach with copy');
+        $this->assertSame(2, $arr[1]['nest']['num'], 'foreach with copy');
+
+    }
 }
 
