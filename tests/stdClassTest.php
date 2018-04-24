@@ -52,5 +52,16 @@ class stdClassTest extends TestCase
         $this->assertSame(2, $arr[1]['nest']['num'], 'foreach with copy');
 
     }
+
+    public function testJsonDecode()
+    {
+        $arr = [
+            'id' => 1,
+            'friends' => [1, 2, 3],
+        ];
+
+        $std = json_decode(json_encode($arr));
+        var_dump($std);
+    }
 }
 
