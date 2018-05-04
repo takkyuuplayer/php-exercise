@@ -61,7 +61,15 @@ class stdClassTest extends TestCase
         ];
 
         $std = json_decode(json_encode($arr));
-        var_dump($std);
+    }
+
+    public function testAssertContain()
+    {
+        $obj = (object)['id' => 1];
+
+        $this->assertContains($obj, [$obj]);
+
+        $this->assertNotContains($obj, [(object)['id' => 1]]);
     }
 }
 
