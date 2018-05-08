@@ -5,9 +5,9 @@ class PDOTest extends TestCase
 {
     private $dbh;
 
-    public function setUp() 
+    public function setUp()
     {
-        $this->dbh = new \PDO('mysql:host=localhost;dbname=test', 'testuser', 'testpass');
+        $this->dbh = new \PDO('mysql:host=mysql-server;dbname=test', 'testuser', 'testpass');
         $this->dbh->exec(
             <<<SQL
 CREATE TABLE IF NOT EXISTS `kouza` (

@@ -58,14 +58,28 @@ class stdClassTest extends TestCase
         $arr = [
             'id' => 1,
             'friends' => [1, 2, 3],
+            'parents' => [
+                'father' => 4,
+                'mother' => 5,
+            ],
+            'mixed' => [
+                1,
+                'foo' => 'bar',
+            ],
         ];
 
         $std = json_decode(json_encode($arr));
+
+        $this->assertEquals(1, $std->id);
+        $this->assertEquals([1, 2, 3], $std->friends);
+        $this->assertEquals((object)['father' => 4, 'mother' => 5], $std->parents);
+        $this->assertEquals((object)['0' => 1, 'foo' => 'bar'], $std->mixed);
     }
 
     public function testAssertContain()
     {
         $obj = (object)['id' => 1];
+        $obj2 = (object)['id' => 1];
 
         $this->assertContains($obj, [$obj]);
 

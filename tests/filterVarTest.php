@@ -2,7 +2,7 @@
 
 use PHPUnit\Framework\TestCase;
 
-class stdClassTest extends TestCase
+class filter_varTest extends TestCase
 {
     public function testFilter_var()
     {
