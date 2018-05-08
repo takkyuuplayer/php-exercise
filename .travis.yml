@@ -13,6 +13,7 @@ php:
 before_install:
   - sudo apt-get install -y jq
 install:
+  - make clean-install
   - make
 before_script:
   - mysql -uroot -e "CREATE DATABASE IF NOT EXISTS test DEFAULT CHARSET=utf8"

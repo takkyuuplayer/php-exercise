@@ -30,8 +30,10 @@ test:
 lint:
 	./vendor/bin/phpcbf tests
 
-travis: composer/update
+clean-install: composer/update
+	rm -rf vendor/ composer.lock
 	cat composer.json | jq .require | jq keys -c | sed 's/[][,]/ /g' | xargs $(COMPOSER) require
+	cat composer.json | jq '.["require-dev"]' | jq keys -c | sed 's/[][,]/ /g' | xargs $(COMPOSER) require --dev
 
 help:
 	cat Makefile
