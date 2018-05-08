@@ -2,10 +2,16 @@ language: php
 cache:
   directories:
     - vendor
+services:
+  - mysql-server
+addons:
+  hosts:
+    - mysql-server
 php:
   - '5.6'
   - '7.0'
   - '7.1'
+  - '7.2'
 before_install:
   - sudo apt-get install -y jq
 install:
