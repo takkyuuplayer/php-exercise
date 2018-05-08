@@ -10,3 +10,7 @@ services:
     tty: true
     command: bash
     working_dir: /srv
+    links:
+      - mysql-server
+  mysql-server:
+    image: circleci/mysql:5.7

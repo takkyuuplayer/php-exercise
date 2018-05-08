@@ -1,9 +1,9 @@
-.PHONY: vendor
+.PHONY: vendor db
 
 PHP=$(shell which php)
 COMPOSER=./composer.phar
 
-all: vendor update
+all: vendor db update
 
 vendor: composer.phar
 	$(COMPOSER) install
@@ -18,6 +18,11 @@ composer/update: composer.phar
 
 vendor/update: composer.phar
 	$(COMPOSER) update
+
+db:
+	mysql -uroot --host=mysql-server -e "DROP DATABASE IF EXISTS test"
+	mysql -uroot --host=mysql-server -e "CREATE DATABASE IF NOT EXISTS test DEFAULT CHARACTER SET utf8"
+	mysql -uroot --host=mysql-server -e "GRANT ALL PRIVILEGES ON test.* TO 'testuser'@'%%' IDENTIFIED BY 'testpass'"
 
 test:
 	./vendor/bin/phpunit
