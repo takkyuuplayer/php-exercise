@@ -9,7 +9,6 @@
         stopOnFailure="true"
         processIsolation="false"
         backupGlobals="false"
-        syntaxCheck="true"
         >
     <testsuite name="sample tests">
         <directory>./tests</directory>
