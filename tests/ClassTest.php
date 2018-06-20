@@ -20,6 +20,8 @@ class ParentClass
 class ChildClass extends ParentClass
 {
     protected $private2;
+    static private $static_private = 3;
+
 }
 
 class ClassTest extends TestCase
@@ -35,6 +37,7 @@ class ClassTest extends TestCase
                 $this->assertSame(1, $k->protected, 'Access to parent protected variable');
                 $this->assertFalse(isset($k->private), 'Cannot access to parent private variable');
                 $this->assertNull($k->private2, 'Cannot override private variable');
+                $this->assertSame(3, ChildClass::$static_private);
             },
             $this,
             'ChildClass'
