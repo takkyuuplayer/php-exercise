@@ -5,7 +5,8 @@
         "nategood/httpful": "^0.2.20",
         "pear/net_url2": "^2.2",
         "illuminate/database": "^5.6",
-        "robmorgan/phinx": "^0.9.2"
+        "robmorgan/phinx": "^0.9.2",
+        "guzzlehttp/guzzle": "^6.3"
     },
     "authors": [
         {
