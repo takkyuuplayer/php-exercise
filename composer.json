@@ -8,6 +8,11 @@
         "robmorgan/phinx": "^0.9.2",
         "guzzlehttp/guzzle": "^6.3"
     },
+    "autoload": {
+      "psr-4": {
+        "Exercise\\": "src"
+      }
+    },
     "authors": [
         {
             "name": "takkyuuplayer",
