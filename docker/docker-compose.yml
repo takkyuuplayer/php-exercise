@@ -12,5 +12,7 @@ services:
     working_dir: /srv
     links:
       - mysql-server
+    ports:
+      - 8080:8080
   mysql-server:
     image: circleci/mysql:5.7
