@@ -6,11 +6,11 @@ class ClosureTest extends TestCase
 {
     public function testThisObjectInClosure()
     {
-        $closure = function() {
+        $closure = function () {
             return get_class($this);
         };
 
-        $this->assertSame(__CLASS__, $closure());
+        $this->assertSame(__class__, $closure());
     }
 }
 
