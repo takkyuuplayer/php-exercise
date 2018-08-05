@@ -26,7 +26,7 @@ class PoolTest extends \PHPUnit\Framework\TestCase
                     $this->assertSame(200, $response->getStatusCode());
                 },
                 'rejected' => function ($exception, $index) {
-                    var_dump($exception->getResponse());
+                    $this->assertNull($exception->getResponse());
                 }
             ]
         );

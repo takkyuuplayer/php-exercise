@@ -11,7 +11,7 @@ class ClientTest extends \PHPUnit\Framework\TestCase
     {
         $client = new Client(
             [
-                'base_uri' => 'http://127.0.0.1:8080/base/',
+                'base_uri' => 'https://github.com/',
             ]
         );
 
@@ -22,6 +22,6 @@ class ClientTest extends \PHPUnit\Framework\TestCase
             $baseUri
         );
 
-        $client->request('GET', 'path', [ 'foo' => 'bar']);
+        $client->request('GET', 'takkyuuplayer', [ 'foo' => 'bar']);
     }
 }
