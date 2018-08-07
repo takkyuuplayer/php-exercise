@@ -8,12 +8,32 @@ class ParentClass
     private $private;
     private $private2;
 
+    static $val = 10;
+    static $val2 = 100;
+
     public function __construct()
     {
         $this->public = 1;
         $this->protected = 1;
         $this->private = 1;
         $this->private2 = 1;
+    }
+
+    public function counter()
+    {
+        static $val = 0;
+
+        return $val++;
+    }
+
+    public function counter2()
+    {
+        return static::$val++;
+    }
+
+    public function counter3()
+    {
+        return self::$val2++;
     }
 }
 
@@ -42,5 +62,41 @@ class ClassTest extends TestCase
             $this,
             'ChildClass'
         )->__invoke();
+    }
+
+    public function testMethodStaticValue()
+    {
+        $p = new ParentClass();
+
+        $this->assertSame(0, $p->counter());
+        $this->assertSame(1, $p->counter());
+
+        $p2 = new ParentClass();
+
+        $this->assertSame(2, $p2->counter());
+        $this->assertSame(3, $p2->counter());
+
+        $c = new ChildClass();
+
+        $this->assertSame(0, $c->counter());
+        $this->assertSame(1, $c->counter());
+    }
+
+    public function testClassStaticValue()
+    {
+        $k = new ParentClass();
+
+        $this->assertSame(10, $k->counter2());
+        $this->assertSame(11, $k->counter2());
+
+        $k2 = new ParentClass();
+
+        $this->assertSame(12, $k->counter2());
+        $this->assertSame(13, $k->counter2());
+
+        $c = new ChildClass();
+
+        $this->assertSame(14, $c->counter2());
+        $this->assertSame(15, $c->counter2());
     }
 }
