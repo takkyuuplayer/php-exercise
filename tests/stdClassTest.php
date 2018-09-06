@@ -1,4 +1,5 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 
 class stdClassTest extends TestCase
@@ -24,8 +25,8 @@ class stdClassTest extends TestCase
     public function testStdClassInArray()
     {
         $arr = [
-            (object)['num' => 1],
-            (object)['num' => 2],
+            (object) ['num' => 1],
+            (object) ['num' => 2],
         ];
 
         foreach ($arr as $std) {
@@ -36,8 +37,8 @@ class stdClassTest extends TestCase
         $this->assertSame(4, $arr[1]->num, 'foreach with reference');
 
         $arr = [
-            ['num' => 1, 'nest' => ['num' => 1],],
-            ['num' => 2, 'nest' => ['num' => 2],],
+            ['num' => 1, 'nest' => ['num' => 1]],
+            ['num' => 2, 'nest' => ['num' => 2]],
         ];
 
         foreach ($arr as $row) {
@@ -50,13 +51,12 @@ class stdClassTest extends TestCase
 
         $this->assertSame(1, $arr[0]['nest']['num'], 'foreach with copy');
         $this->assertSame(2, $arr[1]['nest']['num'], 'foreach with copy');
-
     }
 
     public function testJsonDecode()
     {
         $arr = [
-            'id' => 1,
+            'id'      => 1,
             'friends' => [1, 2, 3],
             'parents' => [
                 'father' => 4,
@@ -72,18 +72,17 @@ class stdClassTest extends TestCase
 
         $this->assertEquals(1, $std->id);
         $this->assertEquals([1, 2, 3], $std->friends);
-        $this->assertEquals((object)['father' => 4, 'mother' => 5], $std->parents);
-        $this->assertEquals((object)['0' => 1, 'foo' => 'bar'], $std->mixed);
+        $this->assertEquals((object) ['father' => 4, 'mother' => 5], $std->parents);
+        $this->assertEquals((object) ['0' => 1, 'foo' => 'bar'], $std->mixed);
     }
 
     public function testAssertContain()
     {
-        $obj = (object)['id' => 1];
-        $obj2 = (object)['id' => 1];
+        $obj = (object) ['id' => 1];
+        $obj2 = (object) ['id' => 1];
 
         $this->assertContains($obj, [$obj]);
 
-        $this->assertNotContains($obj, [(object)['id' => 1]]);
+        $this->assertNotContains($obj, [(object) ['id' => 1]]);
     }
 }
-

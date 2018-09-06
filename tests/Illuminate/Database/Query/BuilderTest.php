@@ -1,4 +1,5 @@
 <?php
+
 namespace Test\Illuminate\Database\Query;
 
 use Closure;
@@ -30,12 +31,10 @@ class DummyConnection implements \Illuminate\Database\ConnectionInterface
         throw new \Exception('This is dummy connection!! You cannot call insert');
     }
 
-
     public function update($query, $bindings = [])
     {
         throw new \Exception('This is dummy connection!! You cannot call update');
     }
-
 
     public function delete($query, $bindings = [])
     {
@@ -65,7 +64,6 @@ class DummyConnection implements \Illuminate\Database\ConnectionInterface
     public function transaction(Closure $callback, $attempts = 1)
     {
         throw new \Exception('This is dummy connection!! You cannot call transaction');
-
         return 1;
     }
 
@@ -89,13 +87,11 @@ class DummyConnection implements \Illuminate\Database\ConnectionInterface
         throw new \Exception('This is dummy connection!! You cannot call transactionLevel');
     }
 
-
     public function pretend(Closure $callback)
     {
         throw new \Exception('This is dummy connection!! You cannot call pretend');
     }
 }
-
 
 use Illuminate\Database\Query\Builder;
 use Illuminate\Database\Query\Grammars\PostgresGrammar as Grammar;
@@ -133,6 +129,7 @@ class BuilderTest extends \PHPUnit\Framework\TestCase
         $this->assertSame('select * from "user" where "id" = ? and ("email" = ? or "email" = ?)', $this->builder->toSql());
         $this->assertSame([1, '1@test.com', '2@test.com'], $this->builder->getBindings());
     }
+
     public function testOrWhere()
     {
         $this->builder->from('user')
@@ -141,7 +138,7 @@ class BuilderTest extends \PHPUnit\Framework\TestCase
                 [
                 ['email', '=', '1@test.com'],
                 [function ($query) {
-                    $query->whereNull('email'); 
+                    $query->whereNull('email');
                 }, null, null, 'or'],
                 ]
             );

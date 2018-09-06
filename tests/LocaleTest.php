@@ -1,4 +1,5 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 
 class LocaleTest extends TestCase
@@ -16,4 +17,3 @@ class LocaleTest extends TestCase
         );
     }
 }
-
