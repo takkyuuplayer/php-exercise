@@ -1,4 +1,5 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 
 class ParentClass
@@ -8,8 +9,8 @@ class ParentClass
     private $private;
     private $private2;
 
-    static $val = 10;
-    static $val2 = 100;
+    public static $val = 10;
+    public static $val2 = 100;
 
     public function __construct()
     {
@@ -40,8 +41,7 @@ class ParentClass
 class ChildClass extends ParentClass
 {
     protected $private2;
-    static private $static_private = 3;
-
+    private static $static_private = 3;
 }
 
 class ClassTest extends TestCase

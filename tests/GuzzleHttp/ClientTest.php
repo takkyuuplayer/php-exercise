@@ -3,7 +3,6 @@
 namespace Tests\GuzzleHttp;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Psr7;
 
 class ClientTest extends \PHPUnit\Framework\TestCase
 {
@@ -22,6 +21,6 @@ class ClientTest extends \PHPUnit\Framework\TestCase
             $baseUri
         );
 
-        $client->request('GET', 'takkyuuplayer', [ 'foo' => 'bar']);
+        $client->request('GET', 'takkyuuplayer', ['foo' => 'bar']);
     }
 }
