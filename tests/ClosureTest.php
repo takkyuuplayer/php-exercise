@@ -10,7 +10,6 @@ class ClosureTest extends TestCase
             return get_class($this);
         };
 
-        $this->assertSame(__class__, $closure());
+        $this->assertSame(__CLASS__, $closure());
     }
 }
-

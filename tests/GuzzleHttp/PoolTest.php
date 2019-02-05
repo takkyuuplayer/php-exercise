@@ -2,8 +2,8 @@
 
 namespace Tests\GuzzleHttp;
 
-use GuzzleHttp\Pool;
 use GuzzleHttp\Client;
+use GuzzleHttp\Pool;
 use GuzzleHttp\Psr7\Request;
 
 class PoolTest extends \PHPUnit\Framework\TestCase
@@ -22,12 +22,12 @@ class PoolTest extends \PHPUnit\Framework\TestCase
             $requests(10),
             [
                 'concurrency' => 2,
-                'fulfilled' => function ($response, $index) {
+                'fulfilled'   => function ($response, $index) {
                     $this->assertSame(200, $response->getStatusCode());
                 },
                 'rejected' => function ($exception, $index) {
                     $this->assertNull($exception->getResponse());
-                }
+                },
             ]
         );
 
