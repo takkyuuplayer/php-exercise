@@ -18,6 +18,8 @@ services:
   mysql-server:
     image: circleci/mysql:5.7-ram
     shm_size: '256mb'
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
   sftp-server:
     image: atmoz/sftp
     command: foo:pass:1001
