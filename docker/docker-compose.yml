@@ -12,7 +12,12 @@ services:
     working_dir: /srv
     links:
       - mysql-server
+      - sftp-server
     ports:
       - 8080:8080
   mysql-server:
-    image: circleci/mysql:5.7
+    image: circleci/mysql:5.7-ram
+    shm_size: '256mb'
+  sftp-server:
+    image: atmoz/sftp
+    command: foo:pass:1001

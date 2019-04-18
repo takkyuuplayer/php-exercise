@@ -16,12 +16,17 @@ class DummyConnection implements \Illuminate\Database\ConnectionInterface
         throw new \Exception('This is dummy connection!! You cannot call raw');
     }
 
-    public function selectOne($query, $bindings = [])
+    public function selectOne($query, $bindings = [], $useReadPdo = true)
     {
         throw new \Exception('This is dummy connection!! You cannot call selectOne');
     }
 
-    public function select($query, $bindings = [])
+    public function select($query, $bindings = [], $useReadPdo = true)
+    {
+        throw new \Exception('This is dummy connection!! You cannot call select');
+    }
+
+    public function cursor($query, $bindings = [], $useReadPdo = true)
     {
         throw new \Exception('This is dummy connection!! You cannot call select');
     }
