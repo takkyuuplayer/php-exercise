@@ -14,7 +14,7 @@ class HTMLPurifierTest extends \PHPUnit\Framework\TestCase
     public function testPurifier()
     {
         $config = HTMLPurifier_Config::createDefault();
-        $config->set('HTML.AllowedElements', [ 'b', 'i', 'li', 'u', 'ul', ]);
+        $config->set('HTML.AllowedElements', ['b', 'i', 'li', 'u', 'ul']);
         $config->set('Core.EscapeInvalidTags', true);
 
         $instance = new HTMLPurifier($config);
