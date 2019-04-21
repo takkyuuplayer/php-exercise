@@ -1,25 +1,24 @@
 version: '3'
 services:
   app:
-    container_name: php-exercise
     build: ./docker/
+    container_name: php-exercise
     volumes:
-      - ./:/srv/
-    environment:
-      - TZ=Asia/Tokyo
+      - ./:/srv/work
+    working_dir: /srv/work
     tty: true
-    command: bash
-    working_dir: /srv
+    ports:
+      - 8080:8080
     links:
       - mysql-server
       - sftp-server
-    ports:
-      - 8080:8080
+    depends_on:
+        - mysql-server
+        - sftp-server
+    command: bash
   mysql-server:
     image: circleci/mysql:5.7-ram
     shm_size: '256mb'
-    environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: 1
   sftp-server:
     image: atmoz/sftp
     command: foo:pass:1001
