@@ -1,4 +1,6 @@
-FROM php:7.2
+FROM circleci/php:7.3
+
+USER root
 
 RUN apt-get update -y
 RUN apt-get install -y \
@@ -6,11 +8,11 @@ RUN apt-get install -y \
     make \
     mysql-client \
     unzip
-RUN apt-get install -y \
-    libicu-dev \
-    zlib1g-dev
+
 RUN docker-php-ext-install \
     intl \
     pdo \
     pdo_mysql \
     zip
+
+USER circleci
