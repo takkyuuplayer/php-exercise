@@ -4,10 +4,7 @@ USER root
 
 RUN apt-get update -y
 RUN apt-get install -y \
-    git \
-    make \
-    mysql-client \
-    unzip
+    default-mysql-client
 
 RUN docker-php-ext-install \
     intl \
