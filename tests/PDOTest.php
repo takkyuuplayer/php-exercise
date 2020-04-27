@@ -6,7 +6,7 @@ class PDOTest extends TestCase
 {
     private $dbh;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->dbh = new \PDO('mysql:host=mysql-server;dbname=test', 'testuser', 'testpass');
         $this->dbh->exec(
