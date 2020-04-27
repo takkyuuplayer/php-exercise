@@ -1,13 +1,13 @@
 {
     "name": "takkyuuplayer/php-exercise",
     "require": {
-        "phpunit/phpunit": "^7.1",
-        "nategood/httpful": "^0.2.20",
+        "phpunit/phpunit": "^9.1",
+        "nategood/httpful": "^0.3.2",
         "pear/net_url2": "^2.2",
-        "illuminate/database": "^5.6",
-        "robmorgan/phinx": "^0.9.2",
-        "guzzlehttp/guzzle": "^6.3",
-        "ezyang/htmlpurifier": "^4.10",
+        "illuminate/database": "^7.8",
+        "robmorgan/phinx": "^0.12.1",
+        "guzzlehttp/guzzle": "^6.5",
+        "ezyang/htmlpurifier": "^4.12",
         "phpseclib/phpseclib": "^2.0"
     },
     "autoload": {
@@ -22,7 +22,7 @@
         }
     ],
     "require-dev": {
-        "squizlabs/php_codesniffer": "^3.2",
-        "mockery/mockery": "^1.0"
+        "squizlabs/php_codesniffer": "^3.5",
+        "mockery/mockery": "^1.3"
     }
 }
