@@ -40,9 +40,10 @@ SQL
 
         $this->assertEquals(
             [
-            ['user_id' => 1, 'balance' => 10000],
-            ['user_id' => 2, 'balance' => 100000],
-            ], $stmt->fetchAll(\PDO::FETCH_ASSOC)
+                ['user_id' => 1, 'balance' => 10000],
+                ['user_id' => 2, 'balance' => 100000],
+            ],
+            $stmt->fetchAll(\PDO::FETCH_ASSOC)
         );
 
         // UPDATE
@@ -57,9 +58,10 @@ SQL
 
         $this->assertEquals(
             [
-            ['user_id' => 1, 'balance' => 5000],
-            ['user_id' => 2, 'balance' => 105000],
-            ], $stmt->fetchAll(\PDO::FETCH_ASSOC)
+                ['user_id' => 1, 'balance' => 5000],
+                ['user_id' => 2, 'balance' => 105000],
+            ],
+            $stmt->fetchAll(\PDO::FETCH_ASSOC)
         );
 
         // Delete
@@ -73,8 +75,9 @@ SQL
 
         $this->assertEquals(
             [
-            ['user_id' => 2, 'balance' => 105000],
-            ], $stmt->fetchAll(\PDO::FETCH_ASSOC)
+                ['user_id' => 2, 'balance' => 105000],
+            ],
+            $stmt->fetchAll(\PDO::FETCH_ASSOC)
         );
     }
 }
