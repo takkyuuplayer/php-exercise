@@ -1,0 +1,20 @@
+name: CI
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup PHP with PECL extension
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+          extensions: intl, pdo, pdo_mysql, zip
+      - run: env | sort
+
+      - run: docker-compose up -d
+      - run: docker-compose ps
+
+      - run: docker-compose run app make
+      - run: docker-compose run app make test
