@@ -35,5 +35,14 @@ clean-install: composer/update
 	cat composer.json | jq .require | jq keys -c | sed 's/[][,]/ /g' | xargs $(COMPOSER) require
 	cat composer.json | jq '.["require-dev"]' | jq keys -c | sed 's/[][,]/ /g' | xargs $(COMPOSER) require --dev
 
+compose/up:
+	docker compose up -d --pull --build
+
+compose/down:
+	docker compose down --remove-orphans
+
+compose/sh:
+	docker compose run app sh
+
 help:
 	cat Makefile
