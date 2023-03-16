@@ -5,8 +5,8 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/cache@v2
+      - uses: actions/checkout@v3
+      - uses: actions/cache@v3
         with:
           path: vendor
           key: ${{ runner.os }}-${{ hashFiles('composer.lock') }}
@@ -14,9 +14,9 @@ jobs:
       - run: env | sort
 
       - uses: satackey/action-docker-layer-caching@v0.0.11
-      - run: docker-compose up --build -d
-      - run: docker-compose ps
+      - run: make compose/up
+      - run: docker compose ps
 
-      - run: docker-compose run --user root app chown -R circleci:circleci /srv
-      - run: docker-compose run app make
-      - run: docker-compose run app make test
+      - run: docker compose run --user root app chown -R circleci:circleci /srv
+      - run: docker compose run app make
+      - run: docker compose run app make test
