@@ -31,7 +31,7 @@ class ConstantsTest extends \PHPUnit\Framework\TestCase
     public function test_Line()
     {
         $this->assertSame(
-            35,
+            36,
             __LINE__
         );
     }
